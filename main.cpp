@@ -6,7 +6,7 @@ using namespace std;
 //constants
 const double pi = 3.14159265358979;
 const double EPS0 = 8.854187817e-12;
-const double MU0 = 4.0 * pi * 1e7;
+const double MU0 = 4.0 * pi * 1e-7;
 //new field, other classes now inherit from this class
 class Field
 {
@@ -40,7 +40,11 @@ class Field
 		//copy assignment
 		Field& operator = (const Field &copy)
 		{
-		
+			for(int i = 0; i < 3; i++)
+			{
+				value[i] = copy.value[i];
+			}
+			return *this;
 		}
 		//destructor
 		virtual ~Field()
@@ -87,7 +91,7 @@ class Field
 };
 
 //Electric Field code!
-class Electric_Field
+class Electric_Field : public Field
 {
 	private:
 		double resultE;	//for Gauss' law calculation	
@@ -121,7 +125,7 @@ class Electric_Field
 				cout << "Distance can only be positive!\n";
 				return; //nothing, void function. 
 			}
-			resultE = (q / 4.0 * pi * r * r * EPS0);
+			resultE = q / (4.0 * pi * r * r * EPS0);
 		}
 		//getter for resultE
 		double getresultE() const
@@ -141,7 +145,7 @@ class Electric_Field
 };
 
 //Magnetic field code! also inherits from Field now.
-class Magnetic_Field
+class Magnetic_Field : public Field
 {
 	private:
 		double resultB; //ampere's law result
@@ -152,7 +156,7 @@ class Magnetic_Field
 		Magnetic_Field(double x, double y, double z) : Field(x, y, z), resultB(0.0)
 		{
 		}
-		Magnetic_Field(const Magnetic_Field &copy) : Field(copy), resultE(copy.resultB)
+		Magnetic_Field(const Magnetic_Field &copy) : Field(copy), resultB(copy.resultB)
 		{
 		}
 		Magnetic_Field& operator = (const Magnetic_Field &copy)
@@ -209,7 +213,7 @@ int main()
 	cout << "====Default fields====\n";
 	cout << "Electric Field:\n";
 	EF1.printMagnitude(); //call function and print values
-	cout << "EF1 inner product: " << EF1.getinnerP() << "\n\n";
+	cout << "EF1 inner product: " << EF1.getInnerp() << "\n\n";
 	cout << "Magnetic Field:\n";
 	MF1.printMagnitude();
 	MF1.uVector();
