@@ -2,7 +2,7 @@
 #include <cmath>
 #include <vector>
 using namespace std;
-
+/*Don't need inner product or other metrics from assignment 7. Need to demonstrate overloaded operators, gauss' law and ampere's law in terminal. */
 //constants
 const double pi = 3.14159265358979;
 const double EPS0 = 8.854187817e-12;
