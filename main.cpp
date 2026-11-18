@@ -212,11 +212,11 @@ int main()
 	//cout chains
 	cout << "====Given Fields====\n";
 	cout << "Electric Field:\n";
-	EF1.printMagnitude(); //call function and print values
+	//EF1.printMagnitude(); //call function and print values
 	//cout << "EF1 inner product: " << EF1.getInnerp() << "\n\n";
-	//cout << "Magnetic Field:\n";
+	cout << "Magnetic Field:\n";
 	MF1.printMagnitude();
-	MF1.uVector();
+	//MF1.uVector();
 	//Gauss and Ampere stuff
 	double q = 2e-6; //2 microcoulombs, random
 	double re = 0.05; //5cm
@@ -232,7 +232,7 @@ int main()
 	EF1.calculateField(q, 2 * re);
 	MF1.calculateField(i, 2 * rb);
 	cout << "E at r = " << 2 * re << "m (2x r): " << EF1.getresultE() << " V/m, 25 percent of previous value\n";
-	cout << "B at r = " << 2 * rb << "m (2x r): " << MF1.getresultB() << "T, 50 percent of previous value\n";
+	cout << "B at r = " << 2 * rb << "m (2x r): " << MF1.getresultB() << " T, 50 percent of previous value\n";
 
 	Electric_Field ef1, ef2(1.0, 2.0, 3.0), ef3(4.0, 5.0, 6.0);
 	ef1 = ef2 + ef3; //operator+ builds a temporary copy and operator = builds a deep one
