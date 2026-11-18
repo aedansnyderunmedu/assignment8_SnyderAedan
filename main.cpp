@@ -212,7 +212,7 @@ int main()
 	//cout chains
 	cout << "====Given Fields====\n";
 	cout << "Electric Field:\n";
-	//EF1.printMagnitude(); //call function and print values
+	EF1.printMagnitude(); //call function and print values
 	//cout << "EF1 inner product: " << EF1.getInnerp() << "\n\n";
 	cout << "Magnetic Field:\n";
 	MF1.printMagnitude();
