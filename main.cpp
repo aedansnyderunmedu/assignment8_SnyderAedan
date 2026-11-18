@@ -133,7 +133,7 @@ class Electric_Field : public Field
 			return resultE;
 		}
 		//adds fields component by component and returns new field
-		Electric_Field operator+(const Electric_Field &rhs) const
+		Electric_Field operator+(const Electric_Field &rhs) const //OVERLOAD operators tell CPP what to do with an operator when assigned to our custom fields, like arrays full of field data. also helps readability vs a custom function like double add_fields(...) or similar.
 		{
 			return Electric_Field(value[0] + rhs.value[0], value[1] + rhs.value[1], value[2] + rhs.value[2]);
 		}
@@ -210,11 +210,11 @@ int main()
 	Electric_Field EF1(0, 1e5, 1e3); //from rubric
 	Magnetic_Field MF1(0.5, 1.2, 2.0);
 	//cout chains
-	cout << "====Default fields====\n";
+	cout << "====Given Fields====\n";
 	cout << "Electric Field:\n";
 	EF1.printMagnitude(); //call function and print values
-	cout << "EF1 inner product: " << EF1.getInnerp() << "\n\n";
-	cout << "Magnetic Field:\n";
+	//cout << "EF1 inner product: " << EF1.getInnerp() << "\n\n";
+	//cout << "Magnetic Field:\n";
 	MF1.printMagnitude();
 	MF1.uVector();
 	//Gauss and Ampere stuff
@@ -228,7 +228,11 @@ int main()
 
 	cout << "\n====Gauss' and Ampere's law values====\n";
 	cout << "E at r = " << re << "m from q = " << q << " C: " << EF1.getresultE() << " V/m\n";
-	cout << "B at r = " << rb << "m from i = " << i << " A: " << MF1.getresultB() << "T\n";
+	cout << "B at r = " << rb << "m from i = " << i << " A: " << MF1.getresultB() << " T\n";
+	EF1.calculateField(q, 2 * re);
+	MF1.calculateField(i, 2 * rb);
+	cout << "E at r = " << 2 * re << "m (2x r): " << EF1.getresultE() << " V/m, 25 percent of previous value\n";
+	cout << "B at r = " << 2 * rb << "m (2x r): " << MF1.getresultB() << "T, 50 percent of previous value\n";
 
 	Electric_Field ef1, ef2(1.0, 2.0, 3.0), ef3(4.0, 5.0, 6.0);
 	ef1 = ef2 + ef3; //operator+ builds a temporary copy and operator = builds a deep one
